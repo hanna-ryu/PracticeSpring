@@ -15,20 +15,27 @@ import org.springframework.context.annotation.Configuration;
 //팩토리 메서드를 활용해서 제공하는 방식.
 @Configuration
 public class AppConfig {
+
+    // @Bean memberService -> new MemoryMemberRepository;
+    // @Bean
     @Bean
     public MemberService memberService(){
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
     @Bean
-    public static MemberRepository memberRepository() {
+    public  MemberRepository memberRepository() {
+        System.out.println("AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
     @Bean
     public OrderService orderService(){
+        System.out.println("AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
     @Bean
     public DiscountPolicy discountPolicy(){
+        System.out.println("AppConfig.discountPolicy");
         return new RateDiscountPolicy();
     }
 }
