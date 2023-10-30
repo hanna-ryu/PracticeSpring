@@ -15,7 +15,7 @@ public class OrderServiceImpl implements OrderService{
     //인터페이스에만 의존 / 구체적인 클래스는 전혀 모름 => DIP
     private final DiscountPolicy discountPolicy;
 
-    @Autowired
+    @Autowired //자동 주입.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
