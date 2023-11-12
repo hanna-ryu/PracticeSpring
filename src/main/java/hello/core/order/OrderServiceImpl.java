@@ -11,16 +11,25 @@ import org.springframework.stereotype.Component;
 public class OrderServiceImpl implements OrderService{
 
     //인터페이스에만 의존 / 구체적인 클래스는 전혀 모름 => DIP
-    private final MemberRepository memberRepository;
+    @Autowired private  MemberRepository memberRepository;
     //인터페이스에만 의존 / 구체적인 클래스는 전혀 모름 => DIP
-    private final DiscountPolicy discountPolicy;
+    @Autowired private  DiscountPolicy discountPolicy;
 
     //생성자가 딱 1개만 있다면, @Autowired가 자동 주입됨.
-    @Autowired //자동 주입.
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        System.out.println("1. OrderServiceImpl.OrderServiceImpl");
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
+
+//    public void setMemberRepository(MemberRepository memberRepository){
+//        System.out.println("memberRepository = " + memberRepository);
+//        this.memberRepository = memberRepository;
+//    }
+//    public void setDisCountPolicy(DiscountPolicy discountPolicy){
+//        System.out.println("discountPolicy = " + discountPolicy);
+//        this.discountPolicy = discountPolicy;
+//        }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
