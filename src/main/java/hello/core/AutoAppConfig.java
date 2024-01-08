@@ -14,7 +14,7 @@ import org.springframework.context.annotation.FilterType;
 @Configuration
 @ComponentScan(
         //탐색할 경로를 지정해줌. 시간 절약.
-        basePackages = "hello.core.member",
+        basePackages = "hello.core",
         basePackageClasses = AutoAppConfig.class,
         //컴포넌트 스캔에서 뺄 거 지정하는것.
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
