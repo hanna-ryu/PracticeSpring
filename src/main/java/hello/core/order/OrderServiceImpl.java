@@ -4,9 +4,12 @@ import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+//@RequiredArgsConstructor // 생성자 대체
 @Component
 public class OrderServiceImpl implements OrderService{
 
@@ -23,7 +26,8 @@ public class OrderServiceImpl implements OrderService{
 
     //생성자가 딱 1개만 있다면, @Autowired가 자동 주입됨.
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) { // Qualifier로 이름을 지정해서 매칭하기
+    public OrderServiceImpl(MemberRepository memberRepository,  DiscountPolicy discountPolicy) { // @Primary 어노테이션을 활용해서 가장 먼저 빈으로 가져오기
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
